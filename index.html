@@ -1,1 +1,1189 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Chatbots México — Automatiza tu negocio con IA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & BASE ─────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --lime:    #C8FF00;
+      --black:   #0A0A0A;
+      --white:   #F7F7F2;
+      --gray:    #E8E8E0;
+      --mid:     #6B6B60;
+      --pill-r:  999px;
+      --card-r:  28px;
+      --font-display: 'Syne', sans-serif;
+      --font-body:    'DM Sans', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    a   { text-decoration: none; color: inherit; }
+
+    /* ── SCROLL REVEAL ────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── NAV ──────────────────────────────────────── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 18px 40px;
+      background: rgba(247,247,242,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(10,10,10,0.08);
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: -0.02em;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .nav-logo span {
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: var(--lime);
+      border-radius: 50%;
+      border: 1px solid var(--black);
+    }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 8px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--mid);
+      padding: 6px 14px;
+      border-radius: var(--pill-r);
+      transition: all 0.2s;
+    }
+    .nav-links a:hover { color: var(--black); background: var(--gray); }
+
+    .nav-cta {
+      background: var(--black);
+      color: var(--white) !important;
+      padding: 8px 20px !important;
+      border-radius: var(--pill-r) !important;
+      font-weight: 500 !important;
+      font-size: 0.85rem !important;
+      transition: background 0.2s !important;
+    }
+    .nav-cta:hover { background: var(--lime) !important; color: var(--black) !important; }
+
+    /* ── HERO ─────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      padding: 120px 40px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .hero-left {
+      background: var(--lime);
+      border-radius: var(--card-r);
+      padding: 52px 48px 48px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 520px;
+    }
+
+    .hero-eyebrow {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.78rem; font-weight: 500; letter-spacing: 0.05em;
+      text-transform: uppercase; color: rgba(10,10,10,0.55);
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block; width: 6px; height: 6px;
+      background: var(--black); border-radius: 50%;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 5vw, 4.2rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: var(--black);
+      margin-bottom: 32px;
+    }
+    .hero-title u {
+      text-decoration-thickness: 3px;
+      text-underline-offset: 6px;
+    }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: rgba(10,10,10,0.6);
+      line-height: 1.6;
+      max-width: 360px;
+      margin-bottom: 40px;
+    }
+
+    .hero-form {
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .hero-form input {
+      flex: 1; min-width: 180px;
+      padding: 12px 20px;
+      border-radius: var(--pill-r);
+      border: 1.5px solid rgba(10,10,10,0.2);
+      background: rgba(255,255,255,0.7);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .hero-form input:focus { border-color: var(--black); }
+    .hero-form button {
+      padding: 12px 26px;
+      border-radius: var(--pill-r);
+      background: var(--black);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.9rem; font-weight: 500;
+      border: none; cursor: pointer;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .hero-form button:hover { background: #333; }
+
+    .hero-social-proof {
+      display: flex; align-items: center; gap: 10px;
+      margin-top: 24px;
+      font-size: 0.8rem; color: rgba(10,10,10,0.55);
+    }
+    .hero-avatars {
+      display: flex;
+    }
+    .hero-avatars span {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--black);
+      border: 2px solid var(--lime);
+      margin-left: -6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.6rem; color: var(--lime); font-weight: 700;
+    }
+    .hero-avatars span:first-child { margin-left: 0; }
+
+    /* Hero Right — dark photo card */
+    .hero-right {
+      border-radius: var(--card-r);
+      overflow: hidden;
+      position: relative;
+      min-height: 520px;
+      background: var(--black);
+    }
+    .hero-right img {
+      position: absolute; inset: 0;
+      opacity: 0.7;
+      transition: opacity 0.4s;
+    }
+    .hero-right:hover img { opacity: 0.5; }
+
+    .hero-right-content {
+      position: absolute; inset: 0;
+      padding: 32px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+
+    .hero-tag-group {
+      display: flex; flex-direction: column; gap: 8px;
+      align-items: flex-start;
+    }
+    .hero-tag {
+      background: rgba(247,247,242,0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--white);
+      font-size: 0.75rem; font-weight: 500;
+      padding: 6px 14px;
+      border-radius: var(--pill-r);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .hero-tag .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--lime);
+    }
+
+    .hero-right-footer {
+      display: flex; justify-content: space-between; align-items: flex-end;
+    }
+    .hero-right-footer p {
+      font-size: 0.82rem; color: rgba(247,247,242,0.7);
+      max-width: 200px; line-height: 1.5;
+    }
+    .hero-arrow-btn {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      background: var(--lime);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+    .hero-arrow-btn:hover { transform: scale(1.1); }
+    .hero-avatar-card {
+      position: absolute; top: 28px; right: 28px;
+      background: rgba(247,247,242,0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 12px 16px;
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero-avatar-img {
+      width: 36px; height: 36px;
+      border-radius: 50%; overflow: hidden;
+      background: var(--lime);
+      flex-shrink: 0;
+    }
+    .hero-avatar-card p {
+      font-size: 0.75rem; color: var(--white); font-weight: 500;
+      line-height: 1.3;
+    }
+
+    /* ── MARQUEE STRIP ────────────────────────────── */
+    .marquee-section {
+      padding: 24px 0;
+      border-top: 1px solid rgba(10,10,10,0.08);
+      border-bottom: 1px solid rgba(10,10,10,0.08);
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex; gap: 60px; width: max-content;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee-track span {
+      font-family: var(--font-display);
+      font-size: 1.1rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      color: var(--mid);
+      white-space: nowrap;
+      display: flex; align-items: center; gap: 20px;
+    }
+    .marquee-track span::after {
+      content: '✦';
+      color: var(--lime);
+      font-size: 1rem;
+    }
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── TAGLINE ──────────────────────────────────── */
+    .tagline-section {
+      padding: 100px 40px;
+      text-align: center;
+    }
+    .tagline-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      max-width: 800px;
+      margin: 0 auto 24px;
+    }
+    .tagline-section p {
+      color: var(--mid);
+      max-width: 480px;
+      margin: 0 auto 40px;
+      font-size: 1rem;
+    }
+    .tagline-btns {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+    }
+    .btn-primary {
+      padding: 13px 28px;
+      background: var(--black);
+      color: var(--white);
+      border-radius: var(--pill-r);
+      font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;
+      border: none; cursor: pointer;
+      transition: background 0.2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-primary:hover { background: var(--lime); color: var(--black); }
+    .btn-secondary {
+      padding: 13px 28px;
+      background: transparent;
+      color: var(--black);
+      border-radius: var(--pill-r);
+      font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;
+      border: 1.5px solid rgba(10,10,10,0.2);
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex; align-items: center; gap: 8px;
+    }
+    .btn-secondary:hover { border-color: var(--black); background: var(--gray); }
+
+    .tagline-floats {
+      position: relative; display: flex; justify-content: center;
+      margin-bottom: 40px;
+    }
+    .float-pill {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: absolute;
+      top: 50%; transform: translateY(-50%);
+    }
+    .float-pill:nth-child(1) { left: 12%; }
+    .float-pill:nth-child(2) { left: 18%; top: 30%; }
+    .float-pill:nth-child(3) { right: 12%; }
+    .float-pill:nth-child(4) { right: 18%; top: 70%; }
+
+    /* ── WORD MARQUEE (We → Protect → Nature) ─────── */
+    .word-section {
+      padding: 20px 40px 80px;
+      overflow: hidden;
+    }
+    .word-track {
+      display: flex; gap: 16px; align-items: center;
+    }
+    .word-card {
+      border-radius: 120px;
+      height: 120px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .word-card.plain {
+      background: var(--gray);
+      min-width: 160px;
+      font-family: var(--font-display);
+      font-size: 2.2rem; font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+    .word-card.photo {
+      min-width: 200px;
+      position: relative;
+    }
+    .word-card.photo span {
+      position: absolute;
+      font-family: var(--font-display);
+      font-size: 2rem; font-weight: 800;
+      color: var(--white);
+      letter-spacing: -0.02em;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+    .word-card.arrow-card {
+      background: var(--lime);
+      min-width: 120px;
+      font-size: 2.5rem;
+    }
+
+    /* ── INITIATIVES / SERVICIOS TABLE ────────────── */
+    .initiatives-section {
+      padding: 80px 40px;
+    }
+    .initiatives-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 40px;
+    }
+    .initiatives-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800; letter-spacing: -0.03em;
+    }
+    .initiatives-header p {
+      font-size: 0.85rem; color: var(--mid);
+      max-width: 200px; text-align: right; line-height: 1.5;
+    }
+
+    .initiatives-table { width: 100%; border-collapse: collapse; }
+    .initiatives-table thead tr {
+      border-bottom: 1px solid rgba(10,10,10,0.1);
+    }
+    .initiatives-table th {
+      font-size: 0.75rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--mid); padding: 12px 0; text-align: left;
+    }
+    .initiatives-table th:last-child { text-align: right; }
+
+    .initiatives-table tbody tr {
+      border-bottom: 1px solid rgba(10,10,10,0.07);
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .initiatives-table tbody tr:hover { background: var(--gray); }
+    .initiatives-table td {
+      padding: 20px 0; font-size: 1.05rem; vertical-align: middle;
+    }
+    .initiatives-table td:first-child {
+      font-family: var(--font-display); font-weight: 700;
+      font-size: 1.2rem; letter-spacing: -0.02em;
+    }
+    .tag-pill {
+      display: inline-flex; align-items: center;
+      padding: 4px 12px; border-radius: var(--pill-r);
+      border: 1px solid rgba(10,10,10,0.15);
+      font-size: 0.75rem; font-weight: 500; color: var(--mid);
+      margin-right: 6px;
+    }
+    .tag-pill.lime { background: var(--lime); border-color: var(--lime); color: var(--black); }
+
+    .initiatives-table td:last-child { text-align: right; }
+    .row-arrow {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 1px solid rgba(10,10,10,0.15);
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      transition: all 0.2s;
+    }
+    .initiatives-table tbody tr:hover .row-arrow {
+      background: var(--lime); border-color: var(--lime);
+    }
+    .row-img {
+      position: absolute; right: 80px; top: 50%; transform: translateY(-50%);
+      width: 80px; height: 56px; border-radius: 12px; overflow: hidden;
+    }
+    .td-rel { position: relative; }
+
+    /* ── NEO / CHATBOT SECTION ────────────────────── */
+    .neo-section {
+      padding: 80px 40px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .neo-left {
+      background: var(--black);
+      border-radius: var(--card-r);
+      padding: 52px 48px;
+      color: var(--white);
+      display: flex; flex-direction: column; gap: 28px;
+      position: relative; overflow: hidden;
+    }
+    .neo-left::before {
+      content: 'NEO';
+      position: absolute; bottom: -30px; right: -10px;
+      font-family: var(--font-display); font-weight: 800;
+      font-size: 9rem; color: rgba(200,255,0,0.07);
+      letter-spacing: -0.05em; line-height: 1;
+      pointer-events: none;
+    }
+    .neo-eyebrow {
+      font-size: 0.75rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--lime);
+    }
+    .neo-left h3 {
+      font-family: var(--font-display);
+      font-size: 2.2rem; font-weight: 800;
+      line-height: 1.1; letter-spacing: -0.03em;
+    }
+    .neo-left p {
+      font-size: 0.95rem; color: rgba(247,247,242,0.65); line-height: 1.7;
+    }
+    .neo-features { display: flex; flex-direction: column; gap: 12px; }
+    .neo-feature {
+      display: flex; align-items: center; gap: 12px;
+      font-size: 0.9rem; color: rgba(247,247,242,0.8);
+    }
+    .neo-feature::before {
+      content: '✓';
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--lime); color: var(--black);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.7rem; font-weight: 700; flex-shrink: 0;
+    }
+
+    .neo-right {
+      display: flex; flex-direction: column; gap: 20px;
+    }
+    .neo-img-card {
+      border-radius: var(--card-r);
+      overflow: hidden;
+      height: 240px;
+      position: relative;
+      background: var(--gray);
+    }
+    .neo-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .stat-card {
+      background: var(--gray);
+      border-radius: var(--card-r);
+      padding: 28px 24px;
+    }
+    .stat-card .num {
+      font-family: var(--font-display);
+      font-size: 2.4rem; font-weight: 800;
+      letter-spacing: -0.04em; line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-card .num span { color: var(--lime); }
+    .stat-card p { font-size: 0.82rem; color: var(--mid); line-height: 1.4; }
+
+    /* ── PRECIOS ──────────────────────────────────── */
+    .pricing-section {
+      padding: 80px 40px;
+    }
+    .pricing-header { margin-bottom: 48px; }
+    .pricing-header h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800; letter-spacing: -0.03em;
+      margin-bottom: 12px;
+    }
+    .pricing-header p { color: var(--mid); font-size: 0.95rem; }
+
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;
+    }
+    .price-card {
+      border-radius: var(--card-r);
+      padding: 36px 32px;
+      border: 1.5px solid rgba(10,10,10,0.1);
+      display: flex; flex-direction: column; gap: 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .price-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+    .price-card.featured {
+      background: var(--black); color: var(--white);
+      border-color: var(--black);
+    }
+    .price-card.lime-card {
+      background: var(--lime); border-color: var(--lime);
+    }
+
+    .price-tag-label {
+      font-size: 0.75rem; font-weight: 500;
+      text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .price-card.featured .price-tag-label { color: var(--lime); }
+    .price-card.lime-card .price-tag-label { color: rgba(10,10,10,0.55); }
+
+    .price-amount {
+      font-family: var(--font-display);
+      font-size: 3rem; font-weight: 800; letter-spacing: -0.04em; line-height: 1;
+    }
+    .price-amount sub {
+      font-size: 1.2rem; vertical-align: super; font-weight: 400;
+    }
+    .price-amount .per {
+      font-family: var(--font-body);
+      font-size: 0.85rem; font-weight: 400; color: var(--mid);
+    }
+    .price-card.featured .per,
+    .price-card.lime-card .per { color: rgba(10,10,10,0.5); }
+    .price-card.featured .per { color: rgba(247,247,242,0.5); }
+
+    .price-features { display: flex; flex-direction: column; gap: 10px; flex: 1; }
+    .pf {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.88rem; color: var(--mid);
+    }
+    .price-card.featured .pf { color: rgba(247,247,242,0.7); }
+    .price-card.lime-card .pf { color: rgba(10,10,10,0.65); }
+    .pf::before {
+      content: '';
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--mid); flex-shrink: 0;
+    }
+    .price-card.featured .pf::before { background: var(--lime); }
+    .price-card.lime-card .pf::before { background: var(--black); }
+
+    .price-btn {
+      padding: 13px;
+      border-radius: var(--pill-r);
+      border: none; cursor: pointer;
+      font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;
+      text-align: center; transition: all 0.2s;
+    }
+    .price-card:not(.featured):not(.lime-card) .price-btn {
+      background: var(--gray); color: var(--black);
+    }
+    .price-card:not(.featured):not(.lime-card) .price-btn:hover { background: var(--black); color: var(--white); }
+    .price-card.featured .price-btn { background: var(--lime); color: var(--black); }
+    .price-card.featured .price-btn:hover { background: #d4ff00; }
+    .price-card.lime-card .price-btn { background: var(--black); color: var(--white); }
+    .price-card.lime-card .price-btn:hover { background: #222; }
+
+    /* ── CARDS PROBLEMAS / SERVICIOS ──────────────── */
+    .cards-section {
+      padding: 80px 40px;
+    }
+    .cards-section h2 {
+      font-family: var(--font-display);
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800; letter-spacing: -0.03em;
+      margin-bottom: 40px;
+    }
+    .cards-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+    .solution-card {
+      border-radius: var(--card-r);
+      overflow: hidden;
+      position: relative;
+      height: 360px;
+      cursor: pointer;
+      background: var(--black);
+    }
+    .solution-card img {
+      position: absolute; inset: 0;
+      opacity: 0.55;
+      transition: opacity 0.4s, transform 0.5s;
+    }
+    .solution-card:hover img { opacity: 0.35; transform: scale(1.04); }
+
+    .solution-card-content {
+      position: absolute; inset: 0;
+      padding: 24px;
+      display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .solution-tags {
+      display: flex; flex-wrap: wrap; gap: 6px;
+    }
+    .solution-tag {
+      background: rgba(247,247,242,0.12);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: var(--white);
+      font-size: 0.68rem; font-weight: 500;
+      padding: 4px 10px; border-radius: var(--pill-r);
+    }
+    .solution-tag.lime { background: var(--lime); border-color: var(--lime); color: var(--black); }
+
+    .solution-card-bottom {}
+    .solution-card-bottom h3 {
+      font-family: var(--font-display);
+      font-size: 1.5rem; font-weight: 800;
+      color: var(--white); line-height: 1.1;
+      letter-spacing: -0.02em; margin-bottom: 6px;
+    }
+    .solution-card-bottom p {
+      font-size: 0.75rem; color: rgba(247,247,242,0.65);
+      line-height: 1.5; margin-bottom: 16px;
+    }
+    .explore-btn {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(247,247,242,0.1);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--pill-r);
+      padding: 9px 16px;
+      font-size: 0.72rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--white);
+      transition: background 0.2s;
+    }
+    .solution-card:hover .explore-btn { background: var(--lime); color: var(--black); border-color: var(--lime); }
+
+    /* ── NEWSLETTER / CONTACTO ────────────────────── */
+    .newsletter-section {
+      padding: 80px 40px;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 32px;
+      border-top: 1px solid rgba(10,10,10,0.08);
+    }
+    .nl-label {
+      display: inline-block;
+      border: 1px solid rgba(10,10,10,0.15);
+      border-radius: var(--pill-r);
+      padding: 6px 14px;
+      font-size: 0.75rem; color: var(--mid);
+      margin-bottom: 16px;
+    }
+    .newsletter-section h3 {
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 800; letter-spacing: -0.03em;
+      max-width: 440px; line-height: 1.2;
+    }
+    .nl-form {
+      display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+    }
+    .nl-form input {
+      padding: 13px 20px; border-radius: var(--pill-r);
+      border: 1.5px solid rgba(10,10,10,0.15);
+      font-family: var(--font-body); font-size: 0.9rem;
+      background: transparent; outline: none; min-width: 220px;
+      transition: border 0.2s;
+    }
+    .nl-form input:focus { border-color: var(--black); }
+    .nl-form button {
+      padding: 13px 24px; border-radius: var(--pill-r);
+      background: var(--black); color: var(--white);
+      font-family: var(--font-body); font-size: 0.9rem; font-weight: 500;
+      border: none; cursor: pointer;
+      display: flex; align-items: center; gap: 8px;
+      transition: background 0.2s;
+    }
+    .nl-form button:hover { background: var(--lime); color: var(--black); }
+
+    /* ── FOOTER ───────────────────────────────────── */
+    footer {
+      padding: 28px 40px;
+      border-top: 1px solid rgba(10,10,10,0.08);
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    footer p { font-size: 0.8rem; color: var(--mid); }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-weight: 800; font-size: 0.95rem;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .footer-links {
+      display: flex; gap: 24px;
+    }
+    .footer-links a {
+      font-size: 0.8rem; color: var(--mid);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--black); }
+
+    /* ── RESPONSIVE ───────────────────────────────── */
+    @media (max-width: 900px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 100px 20px 60px; }
+      .hero-right { min-height: 320px; }
+      .tagline-section, .initiatives-section, .neo-section,
+      .pricing-section, .cards-section { padding: 60px 20px; }
+      .neo-section { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: 1fr 1fr; }
+      .word-section { padding: 20px; }
+      .word-track { gap: 10px; }
+      .word-card { height: 90px; }
+      .word-card.plain { min-width: 110px; font-size: 1.5rem; }
+      .word-card.photo { min-width: 130px; }
+      .word-card.arrow-card { min-width: 80px; font-size: 1.8rem; }
+      .newsletter-section { padding: 60px 20px; flex-direction: column; align-items: flex-start; }
+      footer { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 12px; }
+      .initiatives-header { flex-direction: column; gap: 12px; }
+      .initiatives-header p { text-align: left; }
+    }
+    @media (max-width: 600px) {
+      .cards-grid { grid-template-columns: 1fr; }
+      .hero-left { padding: 36px 28px; min-height: auto; }
+      .neo-left { padding: 36px 28px; }
+      .neo-stats { grid-template-columns: 1fr; }
+      .float-pill { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">
+      <span></span>
+      The Chatbots México
+    </div>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#neo">Conoce a Neo</a></li>
+      <li><a href="#precios">Precios</a></li>
+      <li><a href="#contacto" class="nav-cta">Contáctanos →</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+
+    <!-- Izquierda -->
+    <div class="hero-left reveal">
+      <div>
+        <div class="hero-eyebrow">The Chatbots México</div>
+        <h1 class="hero-title">
+          Automatiza tu<br>
+          negocio con<br>
+          <u>Inteligencia</u><br>
+          Artificial.
+        </h1>
+        <p class="hero-sub">
+          Chatbots inteligentes para WhatsApp, Facebook e Instagram.
+          Atiende, califica y convierte clientes —sin esfuerzo humano.
+        </p>
+      </div>
+      <div>
+        <div class="hero-form">
+          <input type="email" placeholder="Tu correo electrónico" />
+          <button>Empezar →</button>
+        </div>
+        <div class="hero-social-proof">
+          <div class="hero-avatars">
+            <span>C</span><span>A</span><span>J</span>
+          </div>
+          <p>+50 empresas de Chihuahua ya automatizan</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Derecha oscura con foto -->
+    <div class="hero-right reveal reveal-delay-1">
+      <img src="images/NIGHT CITY.png" alt="Ciudad nocturna" />
+      <div class="hero-right-content">
+        <!-- Avatar card -->
+        <div class="hero-avatar-card">
+          <div class="hero-avatar-img">
+            <img src="images/AVATAR.png" alt="Neo" />
+          </div>
+          <p>Neo —<br>Tu asistente IA</p>
+        </div>
+        <!-- Tags -->
+        <div class="hero-tag-group" style="margin-top: 80px;">
+          <div class="hero-tag"><span class="dot"></span> Calificación de leads</div>
+          <div class="hero-tag"><span class="dot"></span> Respuesta 24/7</div>
+          <div class="hero-tag"><span class="dot"></span> Integración Meta</div>
+        </div>
+        <!-- Footer -->
+        <div class="hero-right-footer">
+          <p>Automatiza tu negocio y enfócate en lo que realmente importa.</p>
+          <a href="#neo" class="hero-arrow-btn">↗</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-section">
+    <div class="marquee-track">
+      <span>Chatbots con IA</span>
+      <span>WhatsApp Business</span>
+      <span>Facebook Messenger</span>
+      <span>Calificación automática</span>
+      <span>Respuesta 24/7</span>
+      <span>Leads en Google Sheets</span>
+      <span>Neo — Tu asistente</span>
+      <span>Chihuahua, México</span>
+      <!-- duplicate for seamless loop -->
+      <span>Chatbots con IA</span>
+      <span>WhatsApp Business</span>
+      <span>Facebook Messenger</span>
+      <span>Calificación automática</span>
+      <span>Respuesta 24/7</span>
+      <span>Leads en Google Sheets</span>
+      <span>Neo — Tu asistente</span>
+      <span>Chihuahua, México</span>
+    </div>
+  </div>
+
+  <!-- TAGLINE -->
+  <section class="tagline-section" id="servicios">
+    <div class="tagline-floats">
+      <div class="float-pill" style="left:10%; top:50%;">
+        <img src="images/CHIHUAHUA.png" alt="" />
+      </div>
+      <div class="float-pill" style="left:17%; top:20%; width:56px;height:56px;">
+        <img src="images/MOCKUP.png" alt="" />
+      </div>
+      <div class="float-pill" style="right:10%; top:50%;">
+        <img src="images/NETWORK ABSTRACT.png" alt="" />
+      </div>
+      <div class="float-pill" style="right:17%; top:80%; width:56px;height:56px;">
+        <img src="images/PEOPLE WORKING.png" alt="" />
+      </div>
+    </div>
+    <h2 class="reveal">¡Haz que tu negocio<br>venda más, sin dormir!</h2>
+    <p class="reveal reveal-delay-1">Trabajamos con empresas en Chihuahua para que la atención al cliente sea automática, rápida e inteligente.</p>
+    <div class="tagline-btns reveal reveal-delay-2">
+      <a href="#precios" class="btn-primary">Ver Planes →</a>
+      <a href="#neo" class="btn-secondary">✦ Conoce a Neo</a>
+    </div>
+  </section>
+
+  <!-- WORD MARQUEE -->
+  <div class="word-section">
+    <div class="word-track reveal">
+      <div class="word-card plain">Tu negocio</div>
+      <div class="word-card photo">
+        <img src="images/MOCKUP.png" alt="" />
+        <span>Conectado</span>
+      </div>
+      <div class="word-card arrow-card">→</div>
+      <div class="word-card photo">
+        <img src="images/NIGHT CITY.png" alt="" />
+        <span>Siempre</span>
+      </div>
+      <div class="word-card plain" style="background:var(--lime);">Activo</div>
+    </div>
+  </div>
+
+  <!-- TABLA DE SERVICIOS -->
+  <section class="initiatives-section">
+    <div class="initiatives-header reveal">
+      <h2>Nuestros servicios<br>para 2025</h2>
+      <p>Descubre qué soluciones estamos implementando para tu empresa</p>
+    </div>
+    <table class="initiatives-table reveal reveal-delay-1">
+      <thead>
+        <tr>
+          <th>Servicio</th>
+          <th>Categoría</th>
+          <th>Canal</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Chatbot de ventas</td>
+          <td><span class="tag-pill">calificación de leads</span></td>
+          <td><span class="tag-pill lime">WhatsApp</span></td>
+          <td class="td-rel"><span class="row-arrow">→</span></td>
+        </tr>
+        <tr>
+          <td>Atención al cliente 24/7</td>
+          <td><span class="tag-pill">soporte automatizado</span></td>
+          <td><span class="tag-pill">Facebook</span></td>
+          <td><span class="row-arrow">→</span></td>
+        </tr>
+        <tr>
+          <td>Campañas con IA</td>
+          <td><span class="tag-pill">marketing</span> <span class="tag-pill lime">seguimiento</span></td>
+          <td><span class="tag-pill">Instagram</span></td>
+          <td><span class="row-arrow">→</span></td>
+        </tr>
+        <tr>
+          <td>Captura de datos</td>
+          <td><span class="tag-pill">Google Sheets</span></td>
+          <td><span class="tag-pill">Multi-canal</span></td>
+          <td><span class="row-arrow">→</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- NEO -->
+  <section class="neo-section" id="neo">
+    <div class="neo-left reveal">
+      <div class="neo-eyebrow">Conoce a Neo</div>
+      <h3>Tu asistente<br>de IA que<br>nunca para.</h3>
+      <p>Neo es el chatbot inteligente de The Chatbots México. Atiende, califica y agenda —en español formal— las 24 horas, los 7 días de la semana.</p>
+      <div class="neo-features">
+        <div class="neo-feature">Responde preguntas en tiempo real</div>
+        <div class="neo-feature">Califica prospectos automáticamente</div>
+        <div class="neo-feature">Captura leads en Google Sheets</div>
+        <div class="neo-feature">Integrado con Meta (FB, Instagram, WA)</div>
+        <div class="neo-feature">Personalizable con tu marca y tono</div>
+      </div>
+      <a href="#contacto" class="btn-primary" style="align-self:flex-start; margin-top:8px;">Hablar con Neo →</a>
+    </div>
+    <div class="neo-right reveal reveal-delay-1">
+      <div class="neo-img-card">
+        <img src="images/AVATAR.png" alt="Neo avatar" />
+      </div>
+      <div class="neo-stats">
+        <div class="stat-card">
+          <div class="num">24<span>/7</span></div>
+          <p>Atención sin pausas ni días de descanso</p>
+        </div>
+        <div class="stat-card">
+          <div class="num">3<span>x</span></div>
+          <p>Más leads capturados vs. atención manual</p>
+        </div>
+        <div class="stat-card">
+          <div class="num">&lt;5<span>s</span></div>
+          <p>Tiempo de respuesta promedio de Neo</p>
+        </div>
+        <div class="stat-card" style="background:var(--lime);">
+          <div class="num">100<span>%</span></div>
+          <p>Español formal, tono profesional siempre</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRECIOS -->
+  <section class="pricing-section" id="precios">
+    <div class="pricing-header reveal">
+      <h2>Planes para cada empresa</h2>
+      <p>Sin contratos forzosos. Comienza hoy y escala cuando quieras.</p>
+    </div>
+    <div class="pricing-grid">
+      <div class="price-card reveal reveal-delay-1">
+        <div class="price-tag-label">Básico</div>
+        <div class="price-amount">
+          <sub>$</sub>3,500
+          <div class="per">/ mes MXN</div>
+        </div>
+        <div class="price-features">
+          <div class="pf">1 canal (FB o WA)</div>
+          <div class="pf">Hasta 500 conversaciones/mes</div>
+          <div class="pf">Captura de leads básica</div>
+          <div class="pf">Soporte por correo</div>
+        </div>
+        <button class="price-btn">Empezar →</button>
+      </div>
+
+      <div class="price-card featured reveal reveal-delay-2">
+        <div class="price-tag-label">Profesional</div>
+        <div class="price-amount">
+          <sub>$</sub>7,500
+          <div class="per">/ mes MXN</div>
+        </div>
+        <div class="price-features">
+          <div class="pf">2 canales (FB + WA o IG)</div>
+          <div class="pf">Conversaciones ilimitadas</div>
+          <div class="pf">Neo con IA avanzada</div>
+          <div class="pf">Google Sheets en tiempo real</div>
+          <div class="pf">Soporte prioritario</div>
+        </div>
+        <button class="price-btn">El más popular →</button>
+      </div>
+
+      <div class="price-card lime-card reveal reveal-delay-3">
+        <div class="price-tag-label">Empresarial</div>
+        <div class="price-amount">
+          <sub>$</sub>14,000
+          <div class="per">/ mes MXN</div>
+        </div>
+        <div class="price-features">
+          <div class="pf">Todos los canales Meta</div>
+          <div class="pf">Flujos personalizados</div>
+          <div class="pf">Integraciones a medida</div>
+          <div class="pf">Capacitación para tu equipo</div>
+          <div class="pf">Account Manager dedicado</div>
+        </div>
+        <button class="price-btn">Contáctanos →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUTION CARDS -->
+  <section class="cards-section">
+    <h2 class="reveal">Problemas que<br>resolvemos</h2>
+    <div class="cards-grid">
+
+      <div class="solution-card reveal reveal-delay-1">
+        <img src="images/PEOPLE WORKING.png" alt="" />
+        <div class="solution-card-content">
+          <div class="solution-tags">
+            <span class="solution-tag lime">Alta demanda</span>
+            <span class="solution-tag">Saturación</span>
+          </div>
+          <div class="solution-card-bottom">
+            <h3>Equipo saturado de mensajes</h3>
+            <p>Tu equipo pierde tiempo respondiendo las mismas preguntas una y otra vez.</p>
+            <div class="explore-btn">EXPLORAR SOLUCIÓN <span>›</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution-card reveal reveal-delay-2">
+        <img src="images/NETWORK ABSTRACT.png" alt="" />
+        <div class="solution-card-content">
+          <div class="solution-tags">
+            <span class="solution-tag">Pérdida de leads</span>
+          </div>
+          <div class="solution-card-bottom">
+            <h3>Leads que se pierden</h3>
+            <p>Prospectos interesados que no reciben respuesta a tiempo y se van con la competencia.</p>
+            <div class="explore-btn">EXPLORAR SOLUCIÓN <span>›</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution-card reveal reveal-delay-3">
+        <img src="images/CHIHUAHUA.png" alt="" />
+        <div class="solution-card-content">
+          <div class="solution-tags">
+            <span class="solution-tag">Presencia digital</span>
+          </div>
+          <div class="solution-card-bottom">
+            <h3>Sin presencia 24/7</h3>
+            <p>Tu negocio cierra, pero los clientes potenciales siguen escribiendo a cualquier hora.</p>
+            <div class="explore-btn">EXPLORAR SOLUCIÓN <span>›</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="solution-card reveal reveal-delay-4">
+        <img src="images/MOCKUP.png" alt="" />
+        <div class="solution-card-content">
+          <div class="solution-tags">
+            <span class="solution-tag">Datos sin orden</span>
+          </div>
+          <div class="solution-card-bottom">
+            <h3>Sin registro de clientes</h3>
+            <p>No sabes quién te contactó, qué quería o si fue atendido correctamente.</p>
+            <div class="explore-btn">EXPLORAR SOLUCIÓN <span>›</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- NEWSLETTER / CONTACTO -->
+  <section class="newsletter-section" id="contacto">
+    <div class="reveal">
+      <div class="nl-label">contacto</div>
+      <h3>¿Listo para automatizar<br>tu negocio en Chihuahua?</h3>
+    </div>
+    <div class="nl-form reveal reveal-delay-1">
+      <input type="email" placeholder="Tu correo electrónico" />
+      <button>Agendar demo →</button>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>©2025. Todos los derechos reservados.</p>
+    <div class="footer-logo">
+      <span style="width:7px;height:7px;background:var(--lime);border-radius:50%;border:1px solid #000;display:inline-block;"></span>
+      The Chatbots México
+    </div>
+    <div class="footer-links">
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">WhatsApp</a>
+    </div>
+  </footer>
+
+  <!-- SCROLL REVEAL SCRIPT -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
